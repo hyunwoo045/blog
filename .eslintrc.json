@@ -1,3 +1,10 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": "next/core-web-vitals",
+  "rules": {
+    "react/prop-types": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/jsx-props-no-multi-spaces": "off",
+    "react/jsx-boolean-value": "off",
+    "react/no-children-prop": "off"
+  }
 }
