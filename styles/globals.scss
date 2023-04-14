@@ -1,0 +1,48 @@
+body {
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+.btn__primary {
+  width: 121px;
+  height: 48px;
+  border: 1px solid black;
+  border-radius: 7%;
+  transition: 0.4s;
+}
+
+.btn__primary:hover {
+  background-color: #333;
+  color: #fff;
+  font-weight: 700;
+}
+
+main {
+  position: relative;
+  top: 60px;
+  overflow: scroll;
+  height: calc(100vh - 60px);
+}
+
+pre {
+  font-size: 11px;
+  margin: 1rem 0;
+}
+
+p {
+  font-size: 14px;
+  line-height: 1.4;
+  margin: 1rem 0;
+}
+
+ul {
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+li {
+  font-size: 13px;
+}
+
+code {
+  background-color: aliceblue;
+}
