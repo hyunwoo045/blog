@@ -1,0 +1,178 @@
+---
+title: "(사내 공모전 대상) Covax 백신 솔루션"
+excerpt: ""
+
+header:
+overlay_image: https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80
+overlay_filter: 0.5
+
+tags:
+
+- Typescript (Nest.js)
+- TypeORM
+- React
+- Docker
+
+toc: true
+toc_label: "table of content"
+toc_icon: "bars"
+toc_sticky: true
+---
+
+- 기간: 2022-03 ~ 2022-11
+- 구성 인원: 4인
+- 역할: 데이터 수집, 수집된 데이터를 제공하는 대시보드 등의 클라우드 백엔드 서비스 개발
+- 수상: 대상
+- 기술 스택
+  - Typescript
+  - Nest.js
+  - TypeORM
+  - React
+  - Docker
+
+---
+
+# 소개
+
+Covax 백신 솔루션 프로젝트는 연 1회 실시하는 "1인 1혁신안" 사내 공모전에 출품한 프로젝트입니다.
+
+2021년 말 아파트 수백여 곳의 월패드가 해킹 당하여 거실 영상이 유출된 사건으로
+(뉴스 링크: [거실 월패드가 당신을 엿본다... "아파트 700곳 몰카 해킹"](https://n.news.naver.com/mnews/article/023/0003655824?sid=102))
+보안 솔루션에 관한 관심이 많았던 시기이기 때문에 이에 관련하여 주제를 선정하였고 작품을 구상하게 되었습니다.
+
+작품의 큰 틀은 월패드 내 시스템에서 **"화이트 리스트"** 를 관리한다는 내용입니다. 인가되지 않은 프로그램이 월패드 내에 설치될 경우
+설치되어 있는 백신 프로그램이 '단지 서버' 혹은 '클라우드 서버'로 정황을 전송하고 즉시 해당 프로그램을 삭제한다는 내용입니다.
+최종 목표는 해당 제품을 솔루션화 하여 제품으로써 아파트 단지에 제공하는 것이었습니다.
+
+이 프로젝트에서 역할을 총 4개로 나뉘었으며, '월패드 백신 프로그램 제작', '클라우드 서버 시스템 구축', '기획', '영업'으로 나뉘었으며
+각 월패트 개발팀 중 1인, 클라우드팀 중 1인, 상품기획팀 중 1인, 국내영업팀 중 1인이 역할을 맡았으며, 개 중 저는 클라우드팀 중 1인으로써
+클라우드 서버 시스템의 데이터 수집 기능을 개발하고 이를 시각적으로 제공해 줄 관리자 페이지 개발을 하였습니다.
+
+
+## 결과
+
+2022년 12월 공모전이 끝나고 저희 팀은 대상을 받게 됩니다. 짝짝짝.
+
+![covax 대상](/images/covax/covax-prize.png)
+
+---
+
+# 시스템 기술 구성
+
+백엔드 API 개발 언어로는 `Typescript` 를 선정하였습니다. 부끄럽게도 특별한 이유는 없습니다. 4인의 팀이긴 하지만
+각 역할의 분야가 극명하게 나뉘어져 있기 때문에 사실상 1인 프로젝트나 다름이 없고, 개발 요구사항에 비해 기간이 매우 매우 널널한
+편이었기 때문에 평소 공부해보고 싶었던 언어를 선택하였습니다. 그래도 공부해보고 싶었던 이유를 간단히 소개하자면
+**Javascript 의 개발 편의성**을 어느 정도나마 가져가면서도, 필요한 부분에서 **타입 안전성**을 보장받을 수 있다는 점 때문에
+평소 기회가 있다면 배워봐야 겠다고 생각했던 기술 스택입니다.
+
+프론트엔드의 주요 개발 라이브러리는 `React` 를 선정하였습니다. 이 역시 특별한 이유 없이, 취업 준비 취미 삼아 공부해봤다는 이유로,
+그렇다고 주 담당이 아닌 분야의 기술을 깊이 공부할 여유는 당시에 없다고 생각했었기 때문에 그나마 다룰 수 있었던 기술을 선택했습니다.
+
+Docker 를 이용하여 이미지를 빌드하고 컨테이너화 하여 배포하며, 구동 서버는 AWS EC2 인스턴스에 구성하였습니다.
+
+# 백엔드 구성 소개
+
+백엔드 시스템이 제공해야 할 서비스는 아주 간단합니다. **데이터의 수집**과 **수집된 데이터 제공**이 전부입니다. 실제 사업에 사용할
+제품이 아닌 프로토타입을 개발하는 것이었기 때문에 로그인과 같은 인증 기능이 없고 기타 보안 검증 관련 기능 또한 없습니다.
+정말 단순히 API 요청을 통해 데이터를 받아 데이터베이스에 저장하고 저장한 것을 쿼리하는 것이 전부인 시스템이에요.
+언어 학습용으로 딱이죠.
+
+[Nestjs 공식 개발 문서](https://docs.nestjs.com/) 를 참고하여 구성하였습니다. 예시로 작성한 코드들은 실제 코드와는
+일부 다른 예시입니다.
+
+## Modules
+
+Nestjs 어플리케이션은 `Module`로 통칭하는 Feature 들을 모아서 하나의 큰 `Module` (`Application Module`) 을 구성하는
+방식, 일종의 트리 형태로 구성됩니다. 일종의 Root 모듈 역할을 할 `Module`을 생성합니다.
+
+```typescript
+@Module({
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: process.env.SERVER_MODE == 'dev' ? '.env.dev' : '.env.local'
+    }),
+    TypeOrmModule.forRoot({
+      type: "mariadb",
+      host: process.env.COVAX_DB_HOST,
+      port: +process.env.COVAX_DB_PORT,
+      database: "covax-db",
+      entities: [
+        // ...
+      ],
+      synchronize: true,
+    }),
+    ResourcesModule,
+    CenterModule,
+    ReportsModule
+  ]
+})
+export class AppModule {}
+```
+
+`@Module` 데코레이터를 확장하는 방식으로 필요한 모듈들을 전부 가져옵니다. 후술할 `TypeOrm` 의 모듈도 환경에 맞는 설정을
+입력해주고 가져옵니다.
+
+하위 모듈에서는 실제 기능에 필요한 `Feature` 들을 모은다는 느낌으로 모듈이 구성됩니다.
+
+```typescript
+@Module({
+  imports: [
+    TypeOrmModule.forFeature([
+      // 해당 모듈에서 사용될 entity 들을 등록해주어야 함
+    ]),
+  ],
+  controllers: [ResourcesController],
+  providers: [
+    HistoryService,
+    Logger
+  ],
+})
+export class ResourcesModule {
+}
+```
+
+## Controllers, Providers
+
+`Controller`와 `Provider` 역시 일종의 Feature 로써 모듈에 등록됩니다. 하지만 각각의 역할이 뚜렷하면서도 핵심적이기 떄문에
+기타 다른 프레임워크에서도 특별히 다루게 되는 경향이 있는 것 같습니다.
+
+`Controller` 는 HTTP Request 를 받고 Response 를 내보내주는 역할을 합니다.
+
+```typescript
+@Controller('resource')
+export class ResourcesController {
+    constructor(
+        private readonly historyService: HistoryService
+    ) {
+    }
+
+    @Post('/pakcage')
+    async createPackageHistory(@Body() reqData: newPackageReqeustDto): Promise<object> {
+        const data: object = newPackageRequestDto.data;
+        return await this.historyService.create(data);
+    }
+}
+```
+
+`historyService` 라는 `HistoryService` 의 인스턴스 의존성을 주입받고 있습니다. 이는 `ResourcesModule` 에
+등록이 되어 있는 `Provider` 임을 알 수 있습니다.
+
+`Provider` 는 서비스, 레파지토리 등과 같은 복잡한 핵심 비즈니스 로직을 
+`Controller` 로부터 분리하여 대신 수행해주는 역할을 합니다.
+
+```typescript
+@Injectable()
+export class HistoryService {
+    constructor(
+        @InjectEntityManager() private dataSource: DataSource,
+        @InjectRepository(PackageDetectHistory) private packageHistoryRepo: Repository<PackageDetectHistory>
+    ) {
+    }
+    
+    async newHistory(data: object) {
+        const history: PackageDetectHistory = new PackageDetectHistory();
+        return await this.packageHistoryRepo.save(history);
+    }
+}
+```
