@@ -104,6 +104,8 @@ export class UserController {
 
 ![Nested Mdoule](/images/projects/01_04.png)
 
+그림 출처: [Modules | Nest.js Documentation](https://docs.nestjs.com/modules)
+
 위에서 작성한 것처럼 `UserController`와 `UserService`가 있다고 할 때 이를 무분별하게 모두 Root Module 에 등록하지 말고 별도로 타입을 가지는 
 모듈을 작성하고 그 모듈을 Root Module 에 연결하는 것을 권장한다.
 
