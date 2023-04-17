@@ -1,6 +1,6 @@
 ---
-title: Dependency Injection
-date: 2023-04-17
+title: "Dependency Injection 패턴"
+date: "2023-04-17"
 tag: ["Design Pattern"]
 ---
 
