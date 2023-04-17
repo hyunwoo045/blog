@@ -29,20 +29,30 @@ pre {
 }
 
 p {
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.4;
   margin: 1rem 0;
+
+  img {
+    width: 90%;
+    height: 50.6%;
+  }
 }
 
 ul {
   line-height: 1.6;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 li {
-  font-size: 13px;
+  font-size: 15px;
+  line-height: 1.6;
 }
 
 code {
   background-color: aliceblue;
+}
+
+h1 {
+  font-size: 1.7rem;
 }
