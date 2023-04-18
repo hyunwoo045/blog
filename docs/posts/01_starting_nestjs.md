@@ -1,7 +1,7 @@
 ---
 title: "NestJS 시작하기"
 date: "2022-03-01"
-tag: ["Nest.js", "TypeORM"]
+tag: ["Nest.js", "TypeScript"]
 ---
 
 # NestJS 시작하기
@@ -123,8 +123,3 @@ export class UserModule {}
 })
 export class AppModule {}
 ```
-
----
-
-Nest.js 에서 가장 핵심이 되는 개념들을 아주 간략하게 정리해보았다. 이 정도 개념만 알고 있어도 클라이언트와 소통할 수 있는 API 어플리케이션을 만드는
-기초 코드를 작성하는데 문제가 없을 것이라 생각된다.
