@@ -35,6 +35,7 @@ export default function Post({ content }) {
                   .page__content {
                     width: 76%;
                     margin: auto;
+                    padding: 80px 0;
                   }
 
                   pre {

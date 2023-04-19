@@ -6,7 +6,7 @@ export default function Home() {
             <section className={"home"}>
                 <section className={"projects"}>
                     <div className={"inner"}>
-                        <div className={"inner__title"}>Job Experiences</div>
+                        <div className={"inner__title"}>Projects</div>
                         <div className={"inner__content"}>경력 중 진행한 프로젝트들을 소개합니다<br/>백엔드 개발자로써 어떤 프로젝트를 맡아왔는지 확인해보세요
                         </div>
                         <div className={"inner__nav"}>

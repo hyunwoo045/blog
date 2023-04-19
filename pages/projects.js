@@ -48,7 +48,7 @@ export default function Projects({allPostsData}) {
             <section className={"content-list"}>
                 <div className={"content-list__page-header"}>
                     <div className={"page__title"}>
-                        JOB Experiences
+                        Projects
                     </div>
                 </div>
 
