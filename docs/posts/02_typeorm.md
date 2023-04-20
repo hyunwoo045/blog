@@ -158,7 +158,3 @@ export class UserService {
 })
 export class UserModule {}
 ```
-
----
-
-시간 나면 데이터베이스 구조를 표현하는 방법을 정리해봐야 겠다.
