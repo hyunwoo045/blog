@@ -1,5 +1,5 @@
 ---
-title: "Spring Boot JPA 사용해보기"
+title: "[Spring Boot] JPA 시작하기"
 date: "2023-04-20"
 tag: ["Spring Boot", "Spring JPA"]
 ---

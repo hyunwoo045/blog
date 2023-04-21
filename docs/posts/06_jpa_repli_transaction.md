@@ -1,5 +1,5 @@
 ---
-title: "[Spring JPA] - Replication 과 Transaction"
+title: "[Spring Boot] - Replication 과 Transaction"
 date: "2023-04-20"
 tag: ["Spring Boot", "Spring Data JPA"]
 ---
