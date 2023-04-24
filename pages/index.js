@@ -1,194 +1,311 @@
+import {getSortedPostsData} from "../lib/posts";
+import {useState} from "react";
 import Link from "next/link";
 
-export default function Home() {
+export default function Home({projects, posts}) {
+
+    const [currentTab, setCurrentTab] = useState(0);
+
+    const tabContent = [
+        {
+            value: "Me",
+            content: (
+                <div key={"0"}>
+                    <ul>
+                        <li>
+                            {(function () {
+                                const from = new Date("2021-08-17");
+                                const to = new Date();
+                                const diff = to.getFullYear() - from.getFullYear();
+                                return Math.ceil(diff);
+                            })()} 년차 백엔드 개발자 🌱
+                        </li>
+                        <li>Name: 김 현우</li>
+                        <li>Email: hyunwoo045@gmail.com</li>
+                        <li>Github: <Link href={'https://hyunwoo045.github.com'}>hyunwoo045.github.com</Link></li>
+                        <li>Addr: 경기도 용인시</li>
+                    </ul>
+                </div>
+            )
+        },
+        {
+            value: "Backend",
+            content: (
+                <div key={"1"}>
+                    <ul>
+                        <li>Java, Node.js, Typescript</li>
+                        <li>Spring Boot, Spring MVC, Spring Data JPA</li>
+                        <li>JPA, QueryDSL</li>
+                        <li>JUnit4, MockMVC, log4j2</li>
+                        <li>Express, Nest.js</li>
+                        <li>TypeORM</li>
+                        <li>MariaDB, MongoDB, Redis, ElasticSearch</li>
+                    </ul>
+                </div>
+            )
+        },
+        {
+            value: "Frontend",
+            content: (
+                <div key={"2"}>
+                    <ul>
+                        <li>HTML5, SCSS, Javascript(ES6)</li>
+                        <li>React, react-router, redux</li>
+                        <li>Vue.js</li>
+                    </ul>
+                </div>
+            )
+        },
+        {
+            value: "DevOps",
+            content: (
+                <div key={"3"}>
+                    <ul>
+                        <li>Git, Gitlab, Gitlab Pipeline</li>
+                        <li>Docker, AWS ECS</li>
+                        <li>Filebeat, Logstash, Kibana, AWS OpenSearch</li>
+                        <li>JIRA Confluence</li>
+                    </ul>
+                </div>
+            )
+        }
+    ]
+
     return (
         <>
             <section className={"home"}>
-                <section className={"projects"}>
-                    <div className={"inner"}>
-                        <div className={"inner__title"}>Projects</div>
-                        <div className={"inner__content"}>경력 중 진행한 프로젝트들을 소개합니다<br/>백엔드 개발자로써 어떤 프로젝트를 맡아왔는지 확인해보세요
-                        </div>
-                        <div className={"inner__nav"}>
+                <div className={"home_title"}>
+                    Welcome! 👐
+                    <br/>
+
+                </div>
+
+                <div className={"main_contents"}>
+                    <div className={"wrapper"}>
+                        <div className={"main_items projects"}>
+                            <div className={"main_items_title"}>
+                                Projects
+                            </div>
+                            <div className={"main_item_li"}>
+                                경력 중 진행한 프로젝트
+                            </div>
+                            <div className={"main_item_li"}>
+                                총 {projects.length} 개의 프로젝트
+                            </div>
+                            <br/><br/>
                             <Link href={'/projects'}>
-                                <button className={"btn__primary"}>
+                                <div className={"btn__primary"}>
                                     보러 가기
-                                </button>
+                                </div>
                             </Link>
                         </div>
-                    </div>
-                </section>
 
-                <section className={"posts"}>
-                    <div className={"inner"}>
-                        <div className={"inner__title"}>POSTS</div>
-                        <div className={"inner__content right"}>레로로의 개발 일기<br/>개발 중 저의 고민과 느낀 점들을 공유합니다</div>
-                        <div className={"inner__nav"}>
+                        <div className={"v-split-fff"}/>
+
+                        <div className={"main_items posts"}>
+                            <div className={"main_items_title"}>
+                                Posts
+                            </div>
+                            <div className={"main_item_li"}>
+                                레로로 개발 기록 포스트
+                            </div>
+                            <div className={"main_item_li"}>
+                                총 {posts.length} 개의 포스트
+                            </div>
+                            <br/><br/>
                             <Link href={'/posts'}>
-                                <button className={"btn__primary"}>
+                                <div className={"btn__primary"}>
                                     보러 가기
-                                </button>
+                                </div>
                             </Link>
                         </div>
+
+                        <div className={"main_items"}>
+                            <div className={"main_items_sub-title"}>
+                                최근 업로드한 포스트
+                            </div>
+                            {posts.slice(0, 4).map((post, idx) => {
+                                return (
+                                    <div className={"main_item_li boxed"} key={idx}>
+                                        {post.title}
+                                    </div>
+                                )
+                            })}
+                        </div>
                     </div>
-                </section>
+                </div>
 
-                <section className={"skills"}>
-                    <div className={"section__title"}>Skills</div>
-                    <ul className={"inner"}>
-                        <li>
-                            <div className={"inner__title"}>Backend</div>
-                            <ul>
-                                <li>Java, Node.js, Typescript</li>
-                                <li>Spring Boot, Spring MVC, Spring Data JPA</li>
-                                <li>JPA, QueryDSL</li>
-                                <li>JUnit4, MockMVC, log4j2</li>
-                                <li>Express, Nest.js</li>
-                                <li>TypeORM</li>
-                                <li>MariaDB, MongoDB, Redis, ElasticSearch</li>
-                            </ul>
-                        </li>
+                <div className={"sub_contents"}>
+                    <div className={"wrapper"}>
+                        <div className={"title_left"}>
+                            About
+                        </div>
+                        <div className={"v-split-000"}/>
+                        <div className={"sub_contents_navbar"}>
+                            {tabContent.map((tc, idx) => {
+                                return (
+                                    <>
+                                        <div className={`tab ${currentTab === idx ? "active" : null}`} key={idx}
+                                             onClick={() => setCurrentTab(idx)}>
+                                            {tc.value}
+                                        </div>
+                                    </>
+                                )
+                            })}
+                        </div>
 
-                        <li>
-                            <div className={"inner__title"}>DevOps</div>
-                            <ul>
-                                <li>Git, Gitlab, Gitlab Pipeline</li>
-                                <li>Docker, AWS ECS</li>
-                                <li>Filebeat, Logstash, Kibana, AWS OpenSearch</li>
-                                <li>JIRA Confluence</li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <div className={"inner__title"}>Frontend</div>
-                            <ul>
-                                <li>HTML5, SCSS, Javascript(ES6)</li>
-                                <li>React, react-router, redux</li>
-                                <li>Vue.js</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </section>
+                        <div className={"sub_contents_inner"}>
+                            {tabContent[currentTab].content}
+                        </div>
+                    </div>
+                </div>
             </section>
 
             <style jsx>{`
               .home {
-                overflow: auto;
-              }
-
-              .projects {
-                position: relative;
-
-                .inner {
+                .home_title {
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  margin: 0 auto;
+                  width: 500px;
                   height: 400px;
-                  background: linear-gradient(to right, rgba(136, 164, 211, 1), rgba(136, 164, 211, 0.4));
-
-                  .inner__title {
-                    position: absolute;
-                    font-size: 42px;
-                    font-weight: 800;
-                    top: 20%;
-                    left: 15%;
-                  }
-
-                  .inner__content {
-                    position: absolute;
-                    font-size: 24px;
-                    font-weight: 400;
-                    top: 42%;
-                    left: 15%;
-                  }
-
-                  .inner__nav {
-                    position: absolute;
-                    font-size: 18px;
-                    font-weight: 400;
-                    top: 70%;
-                    left: 15%;
-                  }
+                  font-size: 61px;
+                  font-weight: 700;
+                  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
                 }
-              }
 
-              .posts {
-                position: relative;
+                .main_contents {
+                  width: 100%;
+                  padding: 0 110px;
+                  box-sizing: border-box;
+                  background-color: rgb(55, 65, 81);
+                  color: #fff;
 
-                .inner {
-                  height: 400px;
-                  background: linear-gradient(to left, rgb(255, 168, 247), rgba(255, 74, 238, 0.4));
+                  .main_items {
+                    min-width: 210px;
+                    height: 350px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                    animation: fade-in 0.5s ease-in-out forwards;
+                    margin: 60px;
 
-                  .inner__title {
-                    position: absolute;
-                    font-size: 42px;
-                    font-weight: 800;
-                    top: 20%;
-                    right: 15%;
-                  }
+                    .main_items_title {
+                      font-size: 38px;
+                      font-weight: 700;
+                      margin-bottom: 24px;
+                    }
 
-                  .inner__content {
-                    position: absolute;
-                    font-size: 24px;
-                    font-weight: 400;
-                    top: 42%;
-                    right: 15%;
+                    .main_items_sub-title {
+                      font-size: 25px;
+                      font-weight: 700;
+                      margin-bottom: 18px;
+                    }
 
-                    &.right {
-                      text-align: right;
+                    .main_item_li {
+                      margin: 12px 0;
+                      font-size: 18px;
+                      font-weight: 500;
+
+                      &.boxed {
+                        &:hover {
+                          font-weight: 700;
+                          cursor: pointer;
+                        }
+                      }
                     }
                   }
+                }
 
-                  .inner__nav {
-                    position: absolute;
-                    font-size: 18px;
-                    font-weight: 400;
-                    top: 70%;
-                    right: 15%;
+                .sub_contents {
+                  position: relative;
+                  height: 400px;
+                  display: flex;
+
+                  .title_left {
+                    font-size: 42px;
+                    font-weight: 700;
+                    width: 200px;
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                  }
+
+                  .sub_contents_navbar {
+                    width: 150px;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+
+                    .tab {
+                      height: 80px;
+                      display: flex;
+                      align-items: center;
+                      font-size: 18px;
+                      font-weight: 700;
+
+                      &:hover {
+                        cursor: pointer;
+                      }
+
+                      &.active {
+                        color: orangered;
+                        text-decoration: underline;
+                      }
+                    }
                   }
                 }
               }
 
-              .skills {
-                line-height: 1.4;
-                width: 100%;
-                position: relative;
-                left: 0;
-                padding: 8px 0;
-                display: block;
-                background: linear-gradient(to bottom right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.7));
-                color: white;
+              .wrapper {
+                width: 85%;
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+                margin: auto;
+              }
 
-                .section__title {
-                  margin: 50px;
-                  font-size: 21px;
-                  font-weight: 900;
+              .v-split-fff {
+                border: 5px solid #fff;
+                height: 50px;
+                margin: 35px;
+              }
+
+              .v-split-000 {
+                border: 5px solid #000;
+                height: 50px;
+                margin: 35px;
+              }
+
+              @keyframes fade-in {
+                from {
+                  opacity: 0;
+                  transform: translateX(-10%);
                 }
-
-                .inner {
-                  display: flex;
-                  list-style-type: none;
-                  margin-left: 30px;
-
-                  li > .inner__title {
-                    padding: 3px 0 12px 0;
-                    font-size: 17px;
-                    font-weight: 800;
-                  }
-
-                  li {
-                    margin-right: 30px;
-                  }
-
-                  li > ul {
-                    padding-left: 0;
-                  }
-
-                  li > ul > li {
-                    padding: 5px 0;
-                    font-size: 13px;
-                    list-style: none;
-                  }
+                to {
+                  opacity: 1;
+                  transform: translateX(0);
                 }
               }
             `}</style>
         </>
     )
+}
+
+
+export async function getStaticProps() {
+    const projects = getSortedPostsData('projects');
+    const posts = getSortedPostsData('posts');
+
+    return {
+        props: {
+            projects,
+            posts
+        }
+    }
 }
