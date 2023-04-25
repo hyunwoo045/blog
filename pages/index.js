@@ -1,8 +1,12 @@
 import {getSortedPostsData} from "../lib/posts";
 import {useState} from "react";
 import Link from "next/link";
+import {useRouter} from "next/router";
 
 export default function Home({projects, posts}) {
+    const router = useRouter();
+
+    const goPost = (idx) => router.push(`/posts/${idx}`);
 
     const [currentTab, setCurrentTab] = useState(0);
 
@@ -22,7 +26,7 @@ export default function Home({projects, posts}) {
                         </li>
                         <li>Name: 김 현우</li>
                         <li>Email: hyunwoo045@gmail.com</li>
-                        <li>Github: <Link href={'https://hyunwoo045.github.com'}>hyunwoo045.github.com</Link></li>
+                        <li>Github: <Link href={'https://github.com/hyunwoo045'}>hyunwoo045.github.com</Link></li>
                         <li>Addr: 경기도 용인시</li>
                     </ul>
                 </div>
@@ -126,7 +130,7 @@ export default function Home({projects, posts}) {
                             </div>
                             {posts.slice(0, 4).map((post, idx) => {
                                 return (
-                                    <div className={"main_item_li boxed"} key={idx}>
+                                    <div className={"main_item_li boxed"} key={idx} onClick={() => goPost(post.id)}>
                                         {post.title}
                                     </div>
                                 )
@@ -155,7 +159,9 @@ export default function Home({projects, posts}) {
                         </div>
 
                         <div className={"sub_contents_inner"}>
-                            {tabContent[currentTab].content}
+                            {/*{tabContent[currentTab].content}*/}
+                            {tabContent.filter((tab, idx) => {return currentTab === idx;})
+                                .map((post, idx) => {return post.content;})}
                         </div>
                     </div>
                 </div>

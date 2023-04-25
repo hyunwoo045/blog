@@ -27,7 +27,7 @@ tag: ["Nest.js", "TypeORM", "React", "Docker"]
 
 ![covax dashboard](/images/projects/01_01.png)
 
-## 기술 스펙
+## 기술 스택
 
 1. 대시보드 파트
    - Node.js
@@ -43,11 +43,11 @@ tag: ["Nest.js", "TypeORM", "React", "Docker"]
 
 ## 공모전 결과
 
-프로젝트의 주요 내용을 구현한 프로토타입을 결과물로 발표한 후 대상을 수상하였다.
+프로젝트의 주요 내용을 구현한 프로토타입을 결과물로 발표한 후 대상을 수상.
 
 ![covax prize](/images/projects/01_02.png)
 
-## 관련 작성 포스트
+## 프로젝트 관련 기록물
 
 1. [Nest.js 시작하기](https://hyunwoo045.vercel.app/posts/01_starting_nestjs)
 2. [TypeORM 개념 정리 및 사용해보기](https://hyunwoo045.vercel.app/posts/02_typeorm)

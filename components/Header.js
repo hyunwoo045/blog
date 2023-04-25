@@ -20,9 +20,6 @@ export default function Header() {
 
                 <div className={"header__nav"}>
                     <div className={"nav__item"}>
-                        <span className={"nav__item__inner"}>about</span>
-                    </div>
-                    <div className={"nav__item"}>
                         <span className={"nav__item__inner"}>
                             <Link href={"https://github.com/hyunwoo045"}>
                                 <Image src={'/images/github_icon.png'} alt={'github_logo'} width={30} height={30}/>

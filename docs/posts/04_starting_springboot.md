@@ -1,5 +1,5 @@
 ---
-title: "[Spring Boot] 에 대하여, 그리고 시작하기"
+title: "[Spring Boot] 기본 개념과 기초 구현"
 date: "2022-04-11"
 tag: ["Java", "Spring Boot"]
 ---
